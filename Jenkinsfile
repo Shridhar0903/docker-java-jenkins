@@ -8,18 +8,17 @@ pipeline {
             }
         }
 
-       stage('Build Docker Image') {
-    steps {
-        script {
-            bat 'set DOCKER_BUILDKIT=0 && docker build -t dockerized-java-app:latest .'
+        stage('Build Docker Image') {
+            steps {
+                script {
+                    bat 'set DOCKER_BUILDKIT=0&& docker build -t dockerized-java-app:latest .'
+                }
+            }
         }
-    }
-}
-
 
         stage('Run Docker Container') {
             steps {
-                sh 'docker run --rm dockerized-java-app:latest'
+                bat 'docker run --rm dockerized-java-app:latest'
             }
         }
     }
